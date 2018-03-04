@@ -1,0 +1,11 @@
+--- ../old/package/Makefile.in	2016-09-21 22:53:28.000000000 +0200
++++ package/Makefile.in	2018-01-20 14:26:40.332491908 +0100
+@@ -151,7 +151,7 @@
+ 	-Wl$(comma)-elf2flt)
+ TARGET_FCFLAGS += $(if $($(PKG)_FLAT_STACKSIZE),-Wl$(comma)-elf2flt=-s$($(PKG)_FLAT_STACKSIZE),\
+ 	-Wl$(comma)-elf2flt)
+-TARGET_LDFLAGS += $(if $($(PKG)_FLAT_STACKSIZE),-Wl$(comma)-elf2flt=-s$($(PKG)_FLAT_STACKSIZE),-Wl$(comma)-elf2flt)
++#TARGET_LDFLAGS += $(if $($(PKG)_FLAT_STACKSIZE),-Wl$(comma)-elf2flt=-s$($(PKG)_FLAT_STACKSIZE),-Wl$(comma)-elf2flt)
+ endif
+ 
+ ifeq ($(BR2_BINFMT_FLAT_SHARED),y)
