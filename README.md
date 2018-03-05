@@ -25,6 +25,8 @@ Write U-Boot, the kernel and the root file system in the internal flash:
 
 U-Boot is configured to run the kernel in XIP mode directly from the internal flash. The root file system is in a MTD partition also in the internal flash.
 
+![alt text](doc/stm32f429i-disco_linux.jpg)
+
 Boot log
 --------
 
