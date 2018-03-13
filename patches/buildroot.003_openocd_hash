@@ -1,9 +1,0 @@
---- ../old/package/openocd/openocd.hash	2016-09-21 22:53:28.000000000 +0200
-+++ package/openocd/openocd.hash	2018-01-20 14:44:13.080453082 +0100
-@@ -1,3 +1,6 @@
- # From http://sourceforge.net/projects/openocd/files/openocd/0.9.0/
- sha1 bcf99bb21f09513065b2c9ece148ace7d16cdd0c openocd-0.9.0.tar.bz2
- md5 665cc98ae9e7297e09ec6ac7235fee49 openocd-0.9.0.tar.bz2
-+
-+# From http://sourceforge.net/projects/openocd/files/openocd/0.10.0/
-+sha1 3245d43d60a1a93f8b0f6b1ce20b53e38cab7a4a  openocd-0.10.0.tar.bz2

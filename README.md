@@ -27,82 +27,16 @@ U-Boot is configured to run the kernel in XIP mode directly from the internal fl
 
 ![alt text](doc/stm32f429i-disco_linux.jpg)
 
-Boot log
---------
-
-```
-U-Boot 2010.03 (***)
-
-CPU  : STM32F4 (Cortex-M4)
-Freqs: SYSCLK=180MHz,HCLK=180MHz,PCLK1=45MHz,PCLK2=90MHz
-Board: STM32F429I-DISCOVERY board,Rev 1.0
-DRAM:   8 MB
-Using default environment
-
-Hit any key to stop autoboot:  0 
-## Booting kernel from Legacy Image at 08020000 ...
-   Image Name:   Linux-2.6.33-arm1
-   Image Type:   ARM Linux Kernel Image (uncompressed)
-   Data Size:    738336 Bytes = 721 kB
-   Load Address: 08020040
-   Entry Point:  08020041
-   Verifying Checksum ... OK
-   Loading Kernel Image ... OK
-OK
-
-Starting kernel ...
-
-Linux version 2.6.33-arm1 (***) (***) #1 Sun Mar 4 20:53:01 CET 2018
-CPU: ARMv7-M Processor [410fc241] revision 1 (ARMv7M)
-CPU: NO data cache, NO instruction cache
-Machine: STMicro STM32
-Ignoring unrecognised tag 0x54410008
-Built 1 zonelists in Zone order, mobility grouping off.  Total pages: 1778
-Kernel command line: stm32_platform=stm32429-disco mem=7M console=ttyS2,115200n8 consoleblank=0 root=/dev/mtdblock0 rdinit=/sbin/init video=vfb:enable,fbmem:0x90700000,fbsize:0x100000
-PID hash table entries: 32 (order: -5, 128 bytes)
-Dentry cache hash table entries: 1024 (order: 0, 4096 bytes)
-Inode-cache hash table entries: 1024 (order: 0, 4096 bytes)
-Memory: 7MB = 7MB total
-Memory: 6976k/6976k available, 192k reserved, 0K highmem
-Virtual kernel memory layout:
-    vector  : 0x00000000 - 0x00001000   (   4 kB)
-    fixmap  : 0xfff00000 - 0xfffe0000   ( 896 kB)
-    vmalloc : 0x00000000 - 0xffffffff   (4095 MB)
-    lowmem  : 0x90000000 - 0x90700000   (   7 MB)
-    modules : 0x90000000 - 0x90800000   (   8 MB)
-      .init : 0x9000a000 - 0x9000e000   (  16 kB)
-      .text : 0x08028000 - 0x080c4000   ( 624 kB)
-      .data : 0x90008000 - 0x90018460   (  66 kB)
-Hierarchical RCU implementation.
-NR_IRQS:90
-Console: colour dummy device 80x30
-Calibrating delay loop... 168.34 BogoMIPS (lpj=841728)
-Mount-cache hash table entries: 512
-bio: create slab <bio-0> at 0
-Switching to clocksource cm3-systick
-ROMFS MTD (C) 2007 Red Hat, Inc.
-io scheduler noop registered
-io scheduler deadline registered (default)
-Console: switching to colour frame buffer device 60x53
-fb0: Virtual frame buffer device, using 1024K of video memory
-Serial: STM32 USART driver
-stm32serial.2: ttyS2 at MMIO 0x40004800 (irq = 39) is a STM32 USART Port
-console [ttyS2] enabled
-brd: module loaded
-uclinux[mtd]: ROM probe address=0x8120000 size=0x57000
-Creating 1 MTD partitions on "ROM":
-0x000000000000-0x000000057000 : "ROMfs"
-ARMv7-M VFP Extension supported
-VFS: Mounted root (romfs filesystem) readonly on device 31:0.
-Freeing init memory: 16K
-starting pid 12, tty '': '/etc/init.d/rcS'
-can't run '/etc/init.d/rcS': No such file or directory
-starting pid 13, tty '': '-/bin/sh'
-/ #
-```
-
 Changelog
 ---------
+
+* next
+  * Buildroot 2018.02
+  * GCC 6.4.0
+  * AFBoot-STM32 0.1
+  * Linux 4.15.7
+  * Busybox 1.27.2
+  * Console on USART1 (pins PA9/PA10)
 
 * 0.1
   * Buildroot 2016.08.1
@@ -111,3 +45,83 @@ Changelog
   * Linux 2.6.33
   * Busybox 1.25.0
   * OpenOCD 0.10.0
+  * Console on USART3 (pins PC10/PC11)
+
+Boot log
+--------
+
+```
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 4.15.7 (***) (***) #23 PREEMPT Tue Mar 13 20:25:51 CET 2018
+[    0.000000] CPU: ARMv7-M [410fc241] revision 1 (ARMv7M), cr=00000000
+[    0.000000] CPU: unknown data cache, unknown instruction cache
+[    0.000000] OF: fdt: Machine model: STMicroelectronics STM32F429i-DISCO board
+[    0.000000] Built 1 zonelists, mobility grouping off.  Total pages: 2032
+[    0.000000] Kernel command line: root=/dev/ram
+[    0.000000] Dentry cache hash table entries: 1024 (order: 0, 4096 bytes)
+[    0.000000] Inode-cache hash table entries: 1024 (order: 0, 4096 bytes)
+[    0.000000] Memory: 7784K/8192K available (1201K kernel code, 127K rwdata, 404K rodata, 63K init, 114K bss, 408K reserved, 0K cma-reserved)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]     vector  : 0x00000000 - 0x00001000   (   4 kB)
+[    0.000000]     fixmap  : 0xffc00000 - 0xfff00000   (3072 kB)
+[    0.000000]     vmalloc : 0x00000000 - 0xffffffff   (4095 MB)
+[    0.000000]     lowmem  : 0x90000000 - 0x90800000   (   8 MB)
+[    0.000000]       .text : 0x(ptrval) - 0x(ptrval)   (1606 kB)
+[    0.000000]       .init : 0x(ptrval) - 0x(ptrval)   (  12 kB)
+[    0.000000]       .data : 0x(ptrval) - 0x(ptrval)   ( 128 kB)
+[    0.000000]        .bss : 0x(ptrval) - 0x(ptrval)   ( 115 kB)
+[    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] Preemptible hierarchical RCU implementation.
+[    0.000000]  Tasks RCU enabled.
+[    0.000000] NR_IRQS: 16, nr_irqs: 16, preallocated irqs: 16
+[    0.000000] interrupt-controller@40013c00: bank0, External IRQs available:0x7fffff
+[    0.000000] clocksource: arm_system_timer: mask: 0xffffff max_cycles: 0xffffff, max_idle_ns: 331816030 ns
+[    0.000000] ARM System timer initialized as clocksource
+[    0.000000] /soc/timer@40000c00: STM32 clockevent driver initialized (32 bits)
+[    0.000000] sched_clock: 32 bits at 100 Hz, resolution 10000000ns, wraps every 21474836475000000ns
+[    0.080000] Calibrating delay loop... 118.68 BogoMIPS (lpj=593408)
+[    0.090000] pid_max: default: 4096 minimum: 301
+[    0.090000] Mount-cache hash table entries: 1024 (order: 0, 4096 bytes)
+[    0.090000] Mountpoint-cache hash table entries: 1024 (order: 0, 4096 bytes)
+[    0.090000] Hierarchical SRCU implementation.
+[    0.100000] devtmpfs: initialized
+[    0.150000] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+[    0.150000] pinctrl core: initialized pinctrl subsystem
+[    0.200000] stm32f429-pinctrl soc:pin-controller: GPIOA bank added
+[    0.200000] stm32f429-pinctrl soc:pin-controller: GPIOB bank added
+[    0.200000] stm32f429-pinctrl soc:pin-controller: GPIOC bank added
+[    0.200000] stm32f429-pinctrl soc:pin-controller: GPIOD bank added
+[    0.210000] stm32f429-pinctrl soc:pin-controller: GPIOE bank added
+[    0.210000] stm32f429-pinctrl soc:pin-controller: GPIOF bank added
+[    0.210000] stm32f429-pinctrl soc:pin-controller: GPIOG bank added
+[    0.210000] stm32f429-pinctrl soc:pin-controller: GPIOH bank added
+[    0.210000] stm32f429-pinctrl soc:pin-controller: GPIOI bank added
+[    0.210000] stm32f429-pinctrl soc:pin-controller: GPIOJ bank added
+[    0.220000] stm32f429-pinctrl soc:pin-controller: GPIOK bank added
+[    0.220000] stm32f429-pinctrl soc:pin-controller: Pinctrl STM32 initialized
+[    0.250000] stm32-dma 40026000.dma-controller: STM32 DMA driver registered
+[    0.260000] stm32-dma 40026400.dma-controller: STM32 DMA driver registered
+[    0.270000] clocksource: Switched to clocksource arm_system_timer
+[    0.710000] workingset: timestamp_bits=30 max_order=11 bucket_order=0
+[    0.740000] random: fast init done
+[    0.790000] io scheduler noop registered (default)
+[    0.790000] io scheduler mq-deadline registered
+[    0.790000] io scheduler kyber registered
+[    0.790000] STM32 USART driver initialized
+[    0.800000] 40011000.serial: ttyS0 at MMIO 0x40011000 (irq = 32, base_baud = 5625000) is a stm32-usart
+[    1.160000] console [ttyS0] enabled
+[    1.160000] stm32_rtc 40002800.rtc: rtc core: registered 40002800.rtc as rtc0
+[    1.180000] stm32_rtc 40002800.rtc: Date/Time must be initialized
+[    1.180000] i2c /dev entries driver
+[    1.200000] input: gpio_keys as /devices/platform/gpio_keys/input/input0
+[    1.210000] stm32_rtc 40002800.rtc: setting system clock to 2000-01-01 02:11:28 UTC (946692688)
+[    1.220000] Freeing unused kernel memory: 12K
+[    1.220000] This architecture does not have kernel memory protection.
+
+
+BusyBox v1.27.2 (2018-03-13 19:50:58 CET) hush - the humble shell
+Enter 'help' for a list of built-in commands.
+
+/ #
+```
+
