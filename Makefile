@@ -13,7 +13,7 @@ bootstrap:
 	cp $(dir_configs)/buildroot $(dir_buildroot)/.config
 
 build:
-	make -j10 -C $(dir_buildroot)
+	make -j$(shell grep -c '^processor' /proc/cpuinfo) -C $(dir_buildroot)
 
 flash:
 	cd $(dir_buildroot)/output/build/host-openocd-0.10.0/tcl && ../../../host/usr/bin/openocd \
