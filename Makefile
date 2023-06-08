@@ -3,6 +3,7 @@ archive_buildroot = buildroot.tar.gz
 board_defconfig = stm32f429_disco_xip_defconfig
 dir_download = downloads
 dir_configs = configs
+dir_output = output
 dir_buildroot = buildroot
 
 bootstrap:
@@ -18,16 +19,7 @@ build:
 	make -j$(shell grep -c '^processor' /proc/cpuinfo) -C $(dir_buildroot)
 
 flash:
-	cd $(dir_buildroot)/output/build/host-openocd-0.10.0/tcl && ../../../host/usr/bin/openocd \
-	-f board/stm32f429discovery.cfg \
-	-c "init" \
-	-c "reset init" \
-	-c "flash probe 0" \
-	-c "flash info 0" \
-	-c "flash write_image erase ../../../images/stm32f429i-disco.bin 0x08000000" \
-	-c "flash write_image erase ../../../images/stm32f429-disco.dtb 0x08004000" \
-	-c "flash write_image erase ../../../images/xipImage 0x08008000" \
-	-c "reset run" -c shutdown
+	cd $(dir_buildroot) && board/stmicroelectronics/stm32f429-disco/flash.sh $(dir_output) stm32f429discovery
 
 clean:
 	rm -rf $(dir_buildroot) $(dir_download)
